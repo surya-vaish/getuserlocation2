@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Location</title>
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(sendLocation, showError);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function sendLocation(position) {
+            let latitude = position.coords.latitude;
+            let longitude = position.coords.longitude;
+
+            // Replace with your Google Form pre-filled link
+            let formURL = "https://docs.google.com/forms/d/e/1FAIpQLScwpXCqJnIqEplGPX2guiqHC0cEkcLpVBCAk7zIDrzR-kA66g/viewform?usp=pp_url&entry.468939919=" + latitude + "&entry.776670888=" + longitude;
+            
+            // Redirect to the Google Form
+            window.location.href = formURL;
+        }
+
+        function showError(error) {
+            alert("Error getting location. Please allow location access and try again.");
+        }
+    </script>
+</head>
+<body onload="getLocation()">
+    <h2>Redirecting to Google Form...</h2>
+    <p>If you are not redirected, enable location services.</p>
+</body>
+</html>
